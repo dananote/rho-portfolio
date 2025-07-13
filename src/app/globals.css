@@ -1,10 +1,5 @@
 @import 'tailwindcss';
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-} */
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -15,31 +10,49 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000000;
-    --foreground: #ededed;
+    --foreground: #ffffff;
   }
 }
 
 :root {
   --background-portfolio: #171717;
-
-  /* 간격 */
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-4: 1rem;
-  --spacing-6: 1.5rem;
 }
 
-/* 기본 (모바일) */
 body {
-  background: var(--page-bg, #000000);
+  background: var(--page-bg, var(--background));
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-  position: relative;
+  height: 100vh;
 }
 
 .page-portfolio {
   --page-bg: var(--background-portfolio);
+}
+
+.base {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 3rem 4rem;
+}
+
+/* 화면에서 스크롤바 안보이게 */
+.wrap::-webkit-scrollbar {
+  display: none;
+}
+.content {
+  height: 100vh;
+  padding: 7.25rem 1rem;
+}
+
+.content:nth-child(3) {
+  background-color: lightgreen;
+}
+.content:nth-child(4) {
+  background-color: lightpink;
 }
 
 header {
@@ -48,16 +61,14 @@ header {
   top: 0;
   left: 0;
   z-index: 1600;
-  background: var(--background);
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  height: 3.5rem;
-  padding: 0 1rem;
+  height: 7.25rem;
+  padding: 1rem 1rem;
   box-sizing: border-box;
-  background: var(--background);
 }
 
 .logo {
@@ -65,100 +76,86 @@ header {
   aspect-ratio: 1 / 1;
 }
 
-.container {
-  margin: 4.5rem auto 0;
-  padding: 0 1.25rem;
-  max-width: 100%;
-  position: relative;
-}
-
 /* 480px 이상 - 작은 태블릿 */
 @media (min-width: 480px) {
   .header-content {
-    height: 4rem;
-    padding: 0 1.25rem;
+    height: 7.5rem;
+    padding: 1rem 1.5rem;
   }
 
-  .container {
-    margin: 5rem auto 0;
-    padding: 0 1.5rem;
+  .content {
+    padding: 7.5rem 1.5rem;
   }
 }
 
 /* 640px 이상 - 태블릿 */
 @media (min-width: 640px) {
   .header-content {
-    height: 4.25rem;
-    padding: 0 1.5rem;
+    height: 7.75rem;
+    padding: 1rem 2rem;
   }
 
-  .container {
-    margin: 5.25rem auto 0;
-    padding: 0 1.75rem;
+  .content {
+    padding: 7.75rem 2rem;
   }
 }
 
 /* 768px 이상 - 작은 데스크탑 */
 @media (min-width: 768px) {
   .header-content {
-    height: 4.5rem;
-    padding: 0 1.75rem;
+    height: 8.25rem;
+    padding: 1.5rem 2.5rem;
   }
 
-  .container {
-    margin: 5.5rem auto 0;
-    padding: 0 2rem;
+  .content {
+    padding: 8.25rem 2.5rem;
   }
 }
 
 /* 1024px 이상 - 데스크탑 */
 @media (min-width: 1024px) {
   .header-content {
-    height: 5rem;
-    padding: 0 2rem;
+    height: 8.25rem;
+    padding: 1.5rem 3rem;
   }
 
-  .container {
-    margin: 6rem auto 0;
-    padding: 0 2.5rem;
+  .content {
+    padding: 8.25rem 3rem;
   }
 }
 
 /* 1280px 이상 - 큰 데스크탑 */
 @media (min-width: 1280px) {
   .header-content {
-    height: 5.25rem;
-    padding: 0 2.5rem;
+    height: 8.5rem;
+    padding: 1.5rem 3.5rem;
   }
 
-  .container {
-    margin: 6.25rem auto 0;
-    padding: 0 2.5rem;
+  .content {
+    padding: 8.5rem 3.5rem;
   }
 }
 
 /* 1440px 이상 - 와이드 데스크탑 */
 @media (min-width: 1440px) {
   .header-content {
-    height: 5.5rem;
-    padding: 0 3rem;
+    height: 8.75rem;
+    padding: 1.5rem 4rem;
   }
 
-  .container {
-    margin: 6.5rem auto 0;
-    padding: 0 3rem;
+  .content {
+    padding: 8.75rem 4rem;
   }
 }
 
 /* 1920px 이상 - 풀HD 이상 */
 @media (min-width: 1920px) {
   .header-content {
-    height: 6rem;
-    padding: 0 3.5rem;
+    height: 9rem;
+    padding: 1.5rem 4.5rem;
   }
 
-  .container {
-    margin: 7rem auto 0;
-    padding: 0 3.5rem;
+  .content {
+    padding: 9rem 4.5rem;
   }
 }

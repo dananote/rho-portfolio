@@ -1,26 +1,15 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'motion/react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import FirstPage from './scrollPage/FirstPage';
+import SecondPage from './scrollPage/SecondPage';
 
 const NAVIGTION_ANIMATION_DURATION = 250;
 
 export default function Profile() {
-  const router = useRouter();
   const [isAnimating, setIsAnimating] = useState(false);
   const [duration, setDuration] = useState(0);
-
-  const navigateWithAnimation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault(); // 기본 링크 동작 방지
-    setIsAnimating(true);
-
-    // 1초 후에 페이지 이동
-    setTimeout(() => {
-      router.push(href);
-    }, NAVIGTION_ANIMATION_DURATION);
-  };
 
   // animation duration
   const calculateDuration = () => {
@@ -40,28 +29,91 @@ export default function Profile() {
     out: { x: isAnimating ? '-100%' : '0', opacity: isAnimating ? 0 : 1 },
   };
 
+  // one-scroll
+
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const slides = [1, 2, 3, 4, 5, 6];
+  const height = `calc(100vh * ${slides.length})`;
+  const isScrollingRef = useRef(false);
+  const scrollDuration = 1500; // 밀리초 단위
+
+  const scrollToPage = (index: number) => {
+    if (!wrapRef.current) return;
+    const targetScrollTop = index * window.innerHeight;
+    console.log('pageHeight', window.innerHeight);
+    console.log('targetScrollTop', targetScrollTop);
+    wrapRef.current.scrollTo({
+      top: targetScrollTop,
+      behavior: 'smooth',
+    });
+    setCurrentPage(index);
+  };
+
+  useEffect(() => {
+    const wheelHandler = (e: WheelEvent) => {
+      if (!wrapRef.current) return;
+      // wheel 이벤트 너무 많이 발생하므로 잠금 처리
+      if (isScrollingRef.current) return;
+      e.preventDefault();
+      if (e.deltaY > 0 && currentPage < slides.length - 1) {
+        // 아래로
+        isScrollingRef.current = true;
+        scrollToPage(currentPage + 1);
+      } else if (e.deltaY < 0 && currentPage > 0) {
+        // 위로
+        isScrollingRef.current = true;
+        scrollToPage(currentPage - 1);
+      }
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, scrollDuration);
+    };
+
+    // 스크롤 이벤트 추가
+    const baseRefCurrent = wrapRef.current;
+    baseRefCurrent?.addEventListener('wheel', wheelHandler, { passive: false });
+
+    return () => {
+      baseRefCurrent?.removeEventListener('wheel', wheelHandler);
+    };
+  }, [currentPage]);
   return (
     <motion.div
+      className="base"
+      ref={wrapRef}
       variants={variants}
       animate="out"
       transition={{ duration: duration }}
     >
       <motion.div
+        className="wrap"
+        style={{ height: height }}
         variants={variants}
         initial="init"
         whileInView="view"
         transition={{ duration: duration }}
       >
-        <div className="bg-blue-900">
-          <div>profile page</div>
-          <Link
-            href="/portfolio"
-            onClick={e => navigateWithAnimation(e, '/portfolio')}
-          >
-            Go to Portfolio
-          </Link>
-        </div>
+        {/* 1 */}
+        <FirstPage
+          setIsAnimating={setIsAnimating}
+          animationDuration={NAVIGTION_ANIMATION_DURATION}
+        />
+        {/* 2 */}
+        <SecondPage
+          setIsAnimating={setIsAnimating}
+          animationDuration={NAVIGTION_ANIMATION_DURATION}
+        />
+        {/* 3 */}
+        <div className="content">3번쨰</div>
+        {/* 4 */}
+        <div className="content">4번쨰</div>
+        {/* 5 */}
+        <div className="content">5번쨰</div>
+        {/* 6 */}
+        <div className="content">6번쨰</div>
       </motion.div>
+      <div className="footer">Footer</div>
     </motion.div>
   );
 }

@@ -63,7 +63,7 @@ export default function Logo() {
           />
         </motion.g>
 
-        {/* 3. 정적 윤곽선 (나중에 나타나서 오른쪽으로 이동) */}
+        {/* 3. 정적 윤곽선 다이아몬드 (나중에 나타나서 오른쪽으로 이동) */}
         <motion.path
           d="M40 50 L90 0 L140 50 L90 100 Z"
           stroke="white"

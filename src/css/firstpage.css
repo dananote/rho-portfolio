@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+.first-content {
+  background-image: url('/images/first-page.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.second-content {
+  background-image: url('/images/second-page.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.first-page-title-wrap {
+  margin-top: 3rem;
+  /* background: red; */
+  display: inline-block;
+}
+
+.first-page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--foreground);
+  display: flex;
+  gap: 0.5rem;
+  /* height:x; */
+  margin-top: -4px;
+  overflow: hidden;
+}
+
+/* 640px 이상 - 태블릿 */
+@media (min-width: 640px) {
+}
