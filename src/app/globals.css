@@ -34,9 +34,10 @@ body {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   padding: 3rem 4rem;
+  font-size: 12px;
 }
 
 /* 화면에서 스크롤바 안보이게 */

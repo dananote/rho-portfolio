@@ -28,6 +28,33 @@
   overflow: hidden;
 }
 
+/* 480px 이상 - 작은 태블릿 */
+@media (min-width: 480px) {
+}
+
 /* 640px 이상 - 태블릿 */
 @media (min-width: 640px) {
+}
+
+/* 768px 이상 - 작은 데스크탑 */
+@media (min-width: 768px) {
+}
+
+/* 1024px 이상 - 데스크탑 */
+@media (min-width: 1024px) {
+}
+
+/* 1280px 이상 - 큰 데스크탑 */
+@media (min-width: 1280px) {
+}
+
+/* 1440px 이상 - 와이드 데스크탑 */
+@media (min-width: 1440px) {
+}
+
+/* 1920px 이상 - 풀HD 이상 */
+@media (min-width: 1920px) {
+  .first-page-title {
+    font-size: 1.75rem;
+  }
 }

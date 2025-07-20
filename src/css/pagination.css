@@ -1,0 +1,65 @@
+.pagination {
+  position: fixed;
+  display: flex;
+  gap: 12px;
+  bottom: 0;
+  right: 0;
+  padding-right: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+/* 480px 이상 - 작은 태블릿 */
+@media (min-width: 480px) {
+  .pagination {
+    padding-right: 1.5rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* 640px 이상 - 태블릿 */
+@media (min-width: 640px) {
+  .pagination {
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* 768px 이상 - 작은 데스크탑 */
+@media (min-width: 768px) {
+  .pagination {
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* 1024px 이상 - 데스크탑 */
+@media (min-width: 1024px) {
+  .pagination {
+    padding-right: 3rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* 1280px 이상 - 큰 데스크탑 */
+@media (min-width: 1280px) {
+  .pagination {
+    padding-right: 4rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* 1440px 이상 - 와이드 데스크탑 */
+@media (min-width: 1440px) {
+  .pagination {
+    padding-right: 5rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* 1920px 이상 - 풀HD 이상 */
+@media (min-width: 1920px) {
+  .pagination {
+    padding-right: 6rem;
+    padding-bottom: 6rem;
+  }
+}
