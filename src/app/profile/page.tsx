@@ -5,8 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import FirstPage from './scrollPage/FirstPage';
 import SecondPage from './scrollPage/SecondPage';
 import Pagenation from './component/Pagenation';
+import SubTitle from './component/SubTitle';
 
-const NAVIGTION_ANIMATION_DURATION = 600;
+const NAVIGTION_ANIMATION_DURATION = 800;
 
 export default function Profile() {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -82,8 +83,9 @@ export default function Profile() {
         ref={wrapRef}
         variants={variants}
         animate="out"
-        transition={{ duration: duration, ease: 'easeInOut', delay: 0.4 }}
+        transition={{ duration: duration, ease: 'easeInOut', delay: 0.6 }}
       >
+        <SubTitle isAnimating={isAnimating} />
         <motion.div
           className="wrap"
           style={{ height: height }}

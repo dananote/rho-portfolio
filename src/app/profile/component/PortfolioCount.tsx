@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
 
 export default function PortfolioCount() {
+  // TODO 위치 반응형 넣기
+  // TODO out될때 애니메이션 넣기
   const variants = {
     init: { y: '-50%', opacity: 0 },
     view: { y: '0%', opacity: 1 },
