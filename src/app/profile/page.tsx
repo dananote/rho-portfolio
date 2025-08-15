@@ -6,15 +6,18 @@ import FirstPage from './scrollPage/FirstPage';
 import SecondPage from './scrollPage/SecondPage';
 import Pagenation from './component/Pagenation';
 import SubTitle from './component/SubTitle';
+import ThirdPage from './scrollPage/ThirdPage';
+import { useHomeAnimationStore } from '@/store/homeAnimationStore';
 
-const NAVIGTION_ANIMATION_DURATION = 800;
+const NAVIGTION_ANIMATION_DURATION = 700;
 
 export default function Profile() {
+  const { setIsHomeAnimation } = useHomeAnimationStore();
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [duration, setDuration] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
-  const slides = [1, 2, 3, 4, 5, 6];
+  const slides = [1, 2, 3];
   const height = `calc(100vh * ${slides.length})`;
   const isScrollingRef = useRef(false);
   const scrollDuration = 1500; // 밀리초 단위
@@ -26,6 +29,7 @@ export default function Profile() {
 
   useEffect(() => {
     calculateDuration();
+    setIsHomeAnimation(false);
   }, []);
 
   /**
@@ -102,17 +106,16 @@ export default function Profile() {
           />
           {/* 2 */}
           <SecondPage
+            isAnimating={isAnimating}
             setIsAnimating={setIsAnimating}
             animationDuration={NAVIGTION_ANIMATION_DURATION}
           />
           {/* 3 */}
-          <div className="content">3번쨰</div>
-          {/* 4 */}
-          <div className="content">4번쨰</div>
-          {/* 5 */}
-          <div className="content">5번쨰</div>
-          {/* 6 */}
-          <div className="content">6번쨰</div>
+          <ThirdPage
+            isAnimating={isAnimating}
+            setIsAnimating={setIsAnimating}
+            animationDuration={NAVIGTION_ANIMATION_DURATION}
+          />
         </motion.div>
       </motion.div>
       <Pagenation

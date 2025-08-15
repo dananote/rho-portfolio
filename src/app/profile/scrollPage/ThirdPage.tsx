@@ -12,7 +12,7 @@ interface FirstPageProps {
   setIsAnimating: (isAnimating: boolean) => void;
 }
 
-export default function FirstPage({
+export default function ThirdPage({
   isAnimating,
   setIsAnimating,
   animationDuration,
